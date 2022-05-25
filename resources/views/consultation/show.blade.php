@@ -12,7 +12,7 @@
                 <div class="user-block">
                   <img class="img-circle" src="{{asset('assets/dist/img/user1-128x128.jpg')}}" alt="User Image">
                   <span class="username"><a href="#">{{$ct->titre}}</a></span>
-                  <span class="description">Shared publicly - 7:30 PM Today</span>
+                  <span class="description">Publié par xxxxx - {{$ct->created_at->format('Y-m-d: h:M');}}</span>
                 </div>
                 <!-- /.user-block -->
                 <div class="card-tools">
@@ -34,8 +34,9 @@
 
                 <p>{{$ct->descript}}</p>
                 <button type="button" class="btn btn-default btn-sm"><i class="fas fa-share"></i> Share</button>
-                <button type="button" class="btn btn-default btn-sm"><i class="far fa-thumbs-up"></i> Like</button>
-                <span class="float-right text-muted">127 likes - 3 comments</span>
+                <a href="/like?idpost={{$ct->id}}&type=like" class="btn btn-default btn-sm"><i class="far fa-thumbs-up"></i> Like</a>
+                <button id="like" class="btn btn-default btn-sm">likeajax <span id="likes"></span></button>
+                <span class="float-right text-muted">{{count($ct->likes)}} likes - {{count($ct->likes)}} comments</span>
               </div>
               <!-- /.card-body -->
               <div class="card-footer card-comments">
@@ -86,4 +87,25 @@
           </div>
 
           </div>
+
+<!-- jQuery -->
+<script src="{{asset('assets/plugins/jquery/jquery.min.js')}}"></script>
+<script>
+	$("#like").click( function(e){
+			e.preventDefault();
+			$.ajax({
+			    url: '/consultations/{{$ct->id}}/like2',
+			    type: "GET", 
+			    success: function(data){
+            console.log('hhhh');
+			    	$('#likes').html(data);	
+            console.log(data);		
+			    },
+			    error: function(data){
+            console.log(data);
+			    },
+			});
+		});
+	</script>
+
 @endsection

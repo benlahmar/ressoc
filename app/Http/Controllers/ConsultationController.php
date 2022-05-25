@@ -44,17 +44,21 @@ class ConsultationController extends Controller
        $data= $this->validate($request,[
 
         ]);
-
-         
-
-          //save
+        //sauvgarde de l'image
+        if($request->file('image')){
+            $file= $request->file('image');
+            $filename= date('YmdHi').$file->getClientOriginalName();
+            $file-> move(public_path('public/Image'), $filename); 
+        }
+          //save in database
           Consultation::create(
               [
                   'titre'=>$request->titre,
                   'descript'=> $request->descript,
                   'photo'=>'',
                   'datedebut'=>$request->datedebut,
-                  "datefin"=>$request->datefin
+                  "datefin"=>$request->datefin,
+                  'photo'=> $filename
               ]);
 
           return redirect('consultations');;

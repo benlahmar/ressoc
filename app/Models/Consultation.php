@@ -15,5 +15,9 @@ class Consultation extends Model
         'datefin'
     ];
 
+    public function likes()
+    {
+       return  $this->hasMany('App\Models\Like');
+    }
     use HasFactory;
 }
