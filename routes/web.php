@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ConsultationController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,7 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/abc',function(){
-    return view('post',['tt'=>44]);
-});
+Route::resource('posts', PostController::class);
 
+Route::get('consultations/abc',[ConsultationController::class,'test1']);
+Route::resource('consultations',ConsultationController::class);
