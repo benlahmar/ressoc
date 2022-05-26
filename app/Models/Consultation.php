@@ -19,5 +19,10 @@ class Consultation extends Model
     {
        return  $this->hasMany('App\Models\Like');
     }
+
+    public function contributions()
+    {
+        return  $this->hasMany('App\Models\Contribution');
+    }
     use HasFactory;
 }

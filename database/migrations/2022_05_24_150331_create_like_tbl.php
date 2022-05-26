@@ -18,6 +18,8 @@ class CreateLikeTbl extends Migration
             $table->string('type');
             $table->date('date');
             $table->foreignId('consultation_id')->constrained();
+            $table->foreignId('contribution_id')->constrained();
+
             $table->timestamps();
         });
     }
