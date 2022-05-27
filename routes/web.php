@@ -5,6 +5,7 @@ use App\Http\Controllers\ContributionController;
 use App\Http\Controllers\Permissioncontroller;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\Rolecontroller;
+use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\UserController;
 use App\Models\Consultation;
 use App\Models\Contribution;
@@ -69,3 +70,13 @@ Route::resource('roles',Rolecontroller::class);
 Route::get('admin/users',[UserController::class,'edit']);
 
 Route::resource('users',UserController::class);
+
+
+// La page où on présente les liens de redirection vers les providers
+Route::get("login-register", [SocialiteController::class, "loginRegister"]);
+
+// La redirection vers le provider
+Route::get("redirect/{provider}", [SocialiteController::class,"redirect"])->name('socialite.redirect');
+
+// Le callback du provider
+Route::get("callback/{provider}", [SocialiteController::class,"callback"])->name('socialite.callback');
