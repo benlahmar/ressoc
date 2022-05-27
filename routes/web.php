@@ -4,6 +4,8 @@ use App\Http\Controllers\ConsultationController;
 use App\Http\Controllers\ContributionController;
 use App\Http\Controllers\Permissioncontroller;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\Rolecontroller;
+use App\Http\Controllers\UserController;
 use App\Models\Consultation;
 use App\Models\Contribution;
 use App\Models\Like;
@@ -62,3 +64,8 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::resource('permissions',Permissioncontroller::class);
+
+Route::resource('roles',Rolecontroller::class);
+Route::get('admin/users',[UserController::class,'edit']);
+
+Route::resource('users',UserController::class);

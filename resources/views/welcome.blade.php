@@ -11,6 +11,10 @@
   <link rel="stylesheet" href="{{asset('assets/plugins/fontawesome-free/css/all.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('assets/dist/css/adminlte.min.css')}}">
+
+  <!-- Bootstrap4 Duallistbox -->
+  <link rel="stylesheet" href="{{asset('assets/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css')}}">
+  
 </head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
