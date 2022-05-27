@@ -1,8 +1,11 @@
 <?php
 
 use App\Http\Controllers\ConsultationController;
+use App\Http\Controllers\ContributionController;
+use App\Http\Controllers\Permissioncontroller;
 use App\Http\Controllers\PostController;
 use App\Models\Consultation;
+use App\Models\Contribution;
 use App\Models\Like;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -32,7 +35,6 @@ Route::get('/like',function(Request $request){
      $like=new Like();
      $like->type=$request->type;
      $like->date=now();
-     $like->consultation();
      $c=Consultation::find($request->idpost);
      $c->likes()->save($like);     
 
@@ -51,3 +53,12 @@ function(Request $request, $idpost){
     return "not_ajax_call";
 
 });
+
+Route::resource('contributions',ContributionController::class);
+Auth::routes(['verify' => true]);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::resource('permissions',Permissioncontroller::class);

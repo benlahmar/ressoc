@@ -18,5 +18,10 @@ class Like extends Model
     {
         $this->belongsTo('App\Models\Consultation');
     }
+
+    public function contribution()
+    {
+        $this->belongsTo('App\Models\Contribution');
+    }
     use HasFactory;
 }
