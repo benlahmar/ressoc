@@ -22,5 +22,10 @@ class Contribution extends Model
     {
         return $this->hasMany('App\Models\Like');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
     use HasFactory;
 }

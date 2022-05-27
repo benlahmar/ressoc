@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Consultation;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -40,7 +41,8 @@ class ConsultationController extends Controller
     public function store(Request $request)
     {
         //recupere et valider les param
-      
+        $user=auth()->user();
+        $u=User::find($user->id);
        $data= $this->validate($request,[
 
         ]);
@@ -51,15 +53,16 @@ class ConsultationController extends Controller
             $file-> move(public_path('public/Image'), $filename); 
         }
           //save in database
-          Consultation::create(
-              [
-                  'titre'=>$request->titre,
-                  'descript'=> $request->descript,
-                  'photo'=>'',
-                  'datedebut'=>$request->datedebut,
-                  "datefin"=>$request->datefin,
-                  'photo'=> $filename
-              ]);
+          $c=new Consultation();
+              
+                  $c->titre=$request->titre;
+                  $c->descript= $request->descript;
+                 
+                  $c->datedebut=$request->datedebut;
+                  $c->datefin=$request->datefin;
+                  $c->photo= $filename;     
+
+              $u->Consultations()->save($c);
 
           return redirect('consultations');;
     }

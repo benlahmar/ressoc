@@ -24,5 +24,10 @@ class Consultation extends Model
     {
         return  $this->hasMany('App\Models\Contribution');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
     use HasFactory;
 }

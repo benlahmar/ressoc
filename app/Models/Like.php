@@ -23,5 +23,10 @@ class Like extends Model
     {
         $this->belongsTo('App\Models\Contribution');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(user::class);
+    }
     use HasFactory;
 }

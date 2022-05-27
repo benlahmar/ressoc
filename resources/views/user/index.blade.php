@@ -33,8 +33,8 @@
                          
                         </td>
                         <td>
-                        <button type="button" class="btn btn-block btn-info btn-xs">Show</button>
-                        <button type="button" class="btn btn-block btn-warning btn-xs   data-toggle="modal" data-target="#modal-default"">Edit</button>
+                        <button type="button" class="btn btn-block btn-info btn-xs"   data-toggle="modal" data-target="#modal-default">Show</button>
+                        <a type="button" class="btn btn-block btn-warning btn-xs" href="{{route('users.edit',$u)}}"  >Edit</a>
                         <button type="button" class="btn btn-block  btn-danger btn-xs">Delete</button>
                     </td>
                     </tr>
@@ -48,7 +48,28 @@
           </div>
 </div>
 
-
+<div class="modal fade" id="modal-default">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Default Modal</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>One fine body&hellip;</p>
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
 
 
 @endsection

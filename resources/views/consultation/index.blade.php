@@ -5,9 +5,11 @@
 
 <div>
 
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default">
-                  Launch Primary Modal
-                </button>
+@can('consultation.ajouter')
+    <button type="button" class="btn btn-block btn-info btn-xs" data-toggle="modal" data-target="#modal-default">
+                  Ajouter une consultation
+    </button>
+@endcan
                 
     </div>
 <div class="row">
@@ -87,6 +89,7 @@
               <form class="form-horizontal" method="post"
                action="{{route('consultations.store')}}" enctype="multipart/form-data">
               @csrf  
+              <input type="hidden" value="{{auth()->user()->id}}"/>
               <div class="card-body">
                   <div class="form-group ">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Titre:</label>
