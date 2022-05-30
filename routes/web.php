@@ -10,6 +10,8 @@ use App\Http\Controllers\UserController;
 use App\Models\Consultation;
 use App\Models\Contribution;
 use App\Models\Like;
+use App\Models\User;
+use App\Notifications\ConsultationNotif;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\View\View;
@@ -80,3 +82,22 @@ Route::get("redirect/{provider}", [SocialiteController::class,"redirect"])->name
 
 // Le callback du provider
 Route::get("callback/{provider}", [SocialiteController::class,"callback"])->name('socialite.callback');
+
+
+Route::get('/notif',function(){
+    $user=User::find(1);
+
+    $user->notify(new ConsultationNotif());
+
+    return $user->notifications;
+});
+
+Route::get('/readnotif', function(){
+
+   // $user=User::find(1);
+   // $user->unreadNotifications->markAsRead();
+    //auth()->user()->unreadNotifications->markAsRead();
+    return auth()->user()->unreadNotifications;
+
+
+});

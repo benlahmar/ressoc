@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Events\ConsultationCreated;
+use App\Listeners\consultationCreatedListenner;
+use App\Models\Consultation;
+use App\Observers\ConsultationObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -18,6 +22,9 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        ConsultationCreated::class => [
+                consultationCreatedListenner::class,
+        ],
     ];
 
     /**
@@ -27,6 +34,6 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Consultation::observe(ConsultationObserver::class);
     }
 }

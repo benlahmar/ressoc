@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Consultation;
 use App\Models\User;
+use App\Notifications\ConsultationNotif;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -63,6 +64,12 @@ class ConsultationController extends Controller
                   $c->photo= $filename;     
 
               $u->Consultations()->save($c);
+
+              $us=User::all();
+              foreach($us as $u)
+              {
+                $u->notify(new ConsultationNotif());
+              }
 
           return redirect('consultations');;
     }
